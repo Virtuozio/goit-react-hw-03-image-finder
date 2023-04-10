@@ -12,6 +12,7 @@ export class App extends Component {
   state = {
     searchQuery: '',
     page: 1,
+    articles: [],
   };
   onSubmit = searchQuery => {
     this.setState({ searchQuery });
@@ -20,18 +21,26 @@ export class App extends Component {
     this.setState({ page });
   };
 
+  addButton = articles => {
+    this.setState({ articles });
+  };
+
   render() {
-    const { searchQuery, page } = this.state;
+    const { searchQuery, page, articles } = this.state;
     return (
-      <div>
+      <div className="App">
         <Searchbar onSubmit={this.onSubmit} />
         {/* {error && <p>Whoops, something went wrong: {error.message}</p>}
         {isLoading && <p>Loading...</p>}
       {articles.length > 0 && ( */}
         <ImageGallery>
-          <ImageGalleryItem searchQuery={searchQuery} currentPage={page} />
+          <ImageGalleryItem
+            addButton={this.addButton}
+            searchQuery={searchQuery}
+            currentPage={page}
+          />
         </ImageGallery>
-        {searchQuery && <Button onLoadMore={this.onLoadMore} />}
+        {articles.length > 0 && <Button onLoadMore={this.onLoadMore} />}
       </div>
     );
   }

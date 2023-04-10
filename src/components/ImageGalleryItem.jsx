@@ -20,6 +20,7 @@ export class ImageGalleryItem extends Component {
         console.log(articles);
 
         this.setState({ articles });
+        this.props.addButton(articles);
       } catch (error) {
         this.setState({ error });
       } finally {
@@ -53,10 +54,15 @@ export class ImageGalleryItem extends Component {
         {isLoading && <Loader />}
         {articles &&
           articles.map(({ id, webformatURL, largeImageURL, tags }) => (
-            <li className="gallery-item" key={id}>
+            <li className="ImageGalleryItem" key={id}>
               <a className="link" href={largeImageURL}>
                 <div className="photo-card">
-                  <img src={webformatURL} alt={tags} loading="lazy" />
+                  <img
+                    className="ImageGalleryItem-image"
+                    src={webformatURL}
+                    alt={tags}
+                    loading="lazy"
+                  />
                 </div>
               </a>
             </li>

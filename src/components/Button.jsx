@@ -12,7 +12,7 @@ export class Button extends Component {
   };
   render() {
     return (
-      <button className="adadad" onClick={this.handleClick}>
+      <button className="Button" onClick={this.handleClick}>
         Load More
       </button>
     );
