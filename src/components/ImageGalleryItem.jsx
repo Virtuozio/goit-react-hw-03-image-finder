@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import api from './services/api';
-// import { Audio } from 'react-loader-spinner';
 import { Loader } from './Loader';
+import PropTypes from 'prop-types';
 
 export class ImageGalleryItem extends Component {
   state = {
@@ -71,3 +71,10 @@ export class ImageGalleryItem extends Component {
     );
   }
 }
+
+ImageGalleryItem.propTypes = {
+  addButton: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};

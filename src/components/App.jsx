@@ -30,9 +30,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Searchbar onSubmit={this.onSubmit} />
-        {/* {error && <p>Whoops, something went wrong: {error.message}</p>}
-        {isLoading && <p>Loading...</p>}
-      {articles.length > 0 && ( */}
+
         <ImageGallery>
           <ImageGalleryItem
             addButton={this.addButton}
