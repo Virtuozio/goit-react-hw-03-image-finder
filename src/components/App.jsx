@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 
 import { ImageGallery } from './ImageGallery';
-import { ImageGalleryItem } from './ImageGalleryItem';
 import { Searchbar } from './Searchbar';
 import { Button } from './Button';
 
@@ -31,14 +30,12 @@ export class App extends Component {
       <div className="App">
         <Searchbar onSubmit={this.onSubmit} />
 
-        <ImageGallery>
-          <ImageGalleryItem
-            addButton={this.addButton}
-            searchQuery={searchQuery}
-            currentPage={page}
-          />
-        </ImageGallery>
-        {articles.length > 0 && <Button onLoadMore={this.onLoadMore} />}
+        <ImageGallery
+          addButton={this.addButton}
+          searchQuery={searchQuery}
+          currentPage={page}
+        />
+        {articles.length > 0 ? <Button onLoadMore={this.onLoadMore} /> : null}
       </div>
     );
   }
