@@ -12,17 +12,23 @@ export class ImageGallery extends Component {
     error: null,
     isShowModal: false,
     largeImgURL: '',
+    page: 1,
+    isLoadMore: true,
   };
 
   async componentDidUpdate(prevProps) {
     const searchText = this.props.searchQuery.trim();
     const currentPage = this.props.currentPage;
     if (prevProps.searchQuery !== searchText && searchText) {
-      this.setState({ isLoading: true });
+      this.setState({
+        currentPage: 1,
+        images: [],
+        isLoadMore: true,
+        isLoading: true,
+      });
       try {
         const articles = await api.fetchArticlesWithQuery(searchText, 1);
-        console.log(articles);
-        const images = articles.map(
+        const images = articles.hits.map(
           ({ id, tags, webformatURL, largeImageURL }) => ({
             id,
             tags,
@@ -30,7 +36,6 @@ export class ImageGallery extends Component {
             largeImageURL,
           })
         );
-        console.log(images);
         this.setState({ images });
         this.props.addButton(images);
       } catch (error) {
@@ -46,7 +51,7 @@ export class ImageGallery extends Component {
           searchText,
           currentPage
         );
-        const images = articles.map(
+        const images = articles.hits.map(
           ({ id, tags, webformatURL, largeImageURL }) => ({
             id,
             tags,
@@ -54,7 +59,7 @@ export class ImageGallery extends Component {
             largeImageURL,
           })
         );
-
+        this.props.addButton(images);
         this.setState(prevState => ({
           images: [...prevState.images, ...images],
         }));
@@ -69,9 +74,7 @@ export class ImageGallery extends Component {
     const imageSrc = e.target.src;
     const { images } = this.state;
     const index = images.findIndex(image => image.webformatURL === imageSrc);
-    console.log(index);
     const largeImage = images[index].largeImageURL;
-    console.log(largeImage);
     this.setState({ largeImgURL: largeImage, isShowModal: true });
   };
   closeModal = () => {

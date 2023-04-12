@@ -5,7 +5,7 @@ export const fetchArticlesWithQuery = async (searchQuery, currentPage) => {
   const response = await axios.get(
     `?key=${API_KEY}&q=${searchQuery}&page=${currentPage}&image_type=photo&orientation=horizontal&per_page=12`
   );
-  return response.data.hits;
+  return response.data;
 };
 
 // eslint-disable-next-line

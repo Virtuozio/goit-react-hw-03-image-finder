@@ -35,7 +35,9 @@ export class App extends Component {
           searchQuery={searchQuery}
           currentPage={page}
         />
-        {articles.length > 0 ? <Button onLoadMore={this.onLoadMore} /> : null}
+        {articles.length === 12 ? (
+          <Button onLoadMore={this.onLoadMore} />
+        ) : null}
       </div>
     );
   }
