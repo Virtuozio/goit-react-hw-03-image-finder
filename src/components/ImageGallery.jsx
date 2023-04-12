@@ -91,13 +91,9 @@ export class ImageGallery extends Component {
         {isLoading && this.props.currentPage === 1 && <Loader />}
         <ul className="ImageGallery" onClick={e => this.imageClick(e)}>
           {images &&
-            images.map(({ id, webformatURL, largeImageURL, tags }) => (
+            images.map(({ id, webformatURL, tags }) => (
               <li className="ImageGalleryItem" key={id}>
-                <ImageGalleryItem
-                  webformatURL={webformatURL}
-                  largeImageURL={largeImageURL}
-                  tags={tags}
-                />
+                <ImageGalleryItem webformatURL={webformatURL} tags={tags} />
               </li>
             ))}
         </ul>
@@ -111,5 +107,4 @@ ImageGallery.propTypes = {
   addButton: PropTypes.func.isRequired,
   searchQuery: PropTypes.string.isRequired,
   currentPage: PropTypes.number.isRequired,
-  // onSubmit: PropTypes.func.isRequired,
 };

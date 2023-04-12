@@ -1,4 +1,6 @@
-export const ImageGalleryItem = ({ webformatURL, largeImageURL, tags }) => (
+import PropTypes from 'prop-types';
+
+export const ImageGalleryItem = ({ webformatURL, tags }) => (
   <img
     className="ImageGalleryItem-image"
     src={webformatURL}
@@ -6,3 +8,8 @@ export const ImageGalleryItem = ({ webformatURL, largeImageURL, tags }) => (
     loading="lazy"
   />
 );
+
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+};
